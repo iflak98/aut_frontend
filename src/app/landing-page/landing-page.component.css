@@ -1,0 +1,40 @@
+.centered-card{
+    width: 50%;
+    /* border: 3px solid green; */
+    padding: 70px 70px;
+    margin: 0;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    -ms-transform: translate(-50%);
+    /* transform: translate(-50%); */
+}
+
+.title{
+    font-weight: bolder;
+    font-size: 40px;
+    font-family: math;
+}
+
+.writeUp{
+    width: 50%;
+    padding: 25px;
+    display: flex;
+    min-height: 500px;
+    height: 500px;
+    justify-content: center;
+    font-size: 50px;
+    font-family: math;
+    font-weight: bolder;
+    line-height: 65px;
+    flex-direction: column;
+}
+
+.fileNumber{
+    cursor: pointer;
+    color: blue;
+}
+
+a{
+    text-decoration: none !important;
+}

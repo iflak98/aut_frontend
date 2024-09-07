@@ -1,0 +1,143 @@
+   <div style="background-image: 'url(./assets/bgImg6.webp)'; background-repeat:no-repeat; background-size: cover;height: 100%;">
+    <p>
+        <mat-toolbar class="mat-elevation-z4" style="background-color: white;">
+            <img src="../../assets/Capgemini-Emblem.png" width="50px">
+          <span class="title">AUT</span>
+        </mat-toolbar>
+
+        <mat-progress-bar
+        mode="indeterminate"
+        color="primary"
+        *ngIf="isLoading"
+      ></mat-progress-bar>
+
+
+      </p>
+      <div class="writeUp">
+        <div style="width: 55%;">
+            Automated Angular Unit Testing
+        </div>
+        <div style="padding-top: 10px;
+        font-size: 20px;
+        font-weight: 100;
+        width: 70%;
+        line-height: 35px;">
+            <p>
+                A simple tool to help you generate the unit test cases for your components, services, directives and pipes <span style="font-weight: bold;">automatically</span>.
+            </p>
+           
+           
+        </div>
+        <div>
+             <button mat-raised-button color="primary" class="btn btn-lg" (click)="showFirstOptionCard=true">Get Started</button>
+      </div>
+      <section class="centered-card" *ngIf="showFirstOptionCard">
+        <mat-card style="text-align:center;margin-bottom:30px">
+            <mat-card-content style="padding:40px">
+                    <button mat-raised-button color="primary" class="btn btn-lg" (click)="showPathCardForSingle=true" style="font-family: math;">Generate For Single Path</button>
+                    <h2 class="m-0">or</h2>
+                    <button mat-raised-button color="primary" class="btn btn-lg" (click)="showPathCardForMultiple=true" style="font-family: math;">Generate For Entire Path</button>
+            </mat-card-content>
+          </mat-card>
+      </section>
+
+        <section class="centered-card" *ngIf="showPathCardForSingle">
+            <mat-card style="text-align:center;margin-bottom:30px">
+                <mat-card-content style="padding:40px">
+                    <h2 style="margin:10px; font-weight:bold; font-family: math;">Enter the file path</h2>
+                    <!-- <br> -->
+                    <mat-form-field class="example-form-field" style="width:66%" appearance="fill">
+                        
+                        <input matInput type="text" style="font-family: math;" placeholder="Example 'C:\Users\USER_ID\folder_path'" [(ngModel)]="path">
+                        <button *ngIf="path" matSuffix mat-icon-button aria-label="Clear" (click)="path=''">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                      </mat-form-field>
+                      <br>
+                        <button mat-raised-button color="primary" class="btn btn-lg" (click)="generateForSingle()" style="font-family: math;">Submit</button>
+                        <button mat-raised-button color="primary" class="btn btn-lg" (click)="showPathCardForSingle=false" style="font-family: math;">Back</button>
+
+                </mat-card-content>
+              </mat-card>
+    
+              <mat-card class="mat-elevation-z10" *ngIf="!!response">
+                    <mat-card-header>
+                        <mat-card-title-group>
+                            <mat-card-title>Test cases successfully generated for <a class="fileNumber" (click)="openFilesDialog()">{{response.files.length}}</a> files</mat-card-title> 
+                            <mat-card-title>Total time taken {{response.time/1000}} seconds</mat-card-title>
+                            <mat-card-title> <button mat-raised-button color="primary" class="btn btn-lg" (click)="runTestForSingle()" style="font-family: math;">Run Test</button></mat-card-title>
+                            <mat-card-title> <button mat-raised-button color="primary" class="btn btn-lg" (click)="onReportClick()" style="font-family: math;">Check Report</button></mat-card-title>
+                            <!-- <mat-card-title> <a>Check Report</a></mat-card-title> -->
+                          </mat-card-title-group>
+                    </mat-card-header>
+                <mat-card-content>
+                </mat-card-content>
+              </mat-card>
+        </section>
+        <section class="centered-card" *ngIf="showPathCardForMultiple">
+          <mat-card style="text-align:center;margin-bottom:30px">
+              <mat-card-content style="padding:40px">
+                  <h2 style="margin:10px; font-weight:bold; font-family: math;">Enter the file path</h2>
+                  <!-- <br> -->
+                  <mat-form-field class="example-form-field" style="width:66%" appearance="fill">
+                      
+                      <input matInput type="text" style="font-family: math;" placeholder="Example 'C:\Users\USER_ID\folder_path'" [(ngModel)]="path">
+                      <button *ngIf="path" matSuffix mat-icon-button aria-label="Clear" (click)="path=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                    <br>
+                      <button mat-raised-button color="primary" class="btn btn-lg" (click)="generateForMultiple()" style="font-family: math;">Submit</button>
+                      <button mat-raised-button color="primary" class="btn btn-lg" (click)="showPathCardForMultiple=false" style="font-family: math;">Back</button>
+
+              </mat-card-content>
+            </mat-card>
+  
+            <mat-card class="mat-elevation-z10" *ngIf="!!response">
+                  <mat-card-header>
+                      <mat-card-title-group>
+                          <mat-card-title>Test cases successfully generated for <a class="fileNumber" (click)="openFilesDialog()">{{response.files.length}}</a> files</mat-card-title> 
+                          <mat-card-title>Total time taken {{response.time/1000}} seconds</mat-card-title>
+                          <mat-card-title> <button mat-raised-button color="primary" class="btn btn-lg" (click)="runTestForMultiple()" style="font-family: math;">Run Test</button></mat-card-title>
+                          <mat-card-title> <button mat-raised-button color="primary" class="btn btn-lg" (click)="onReportClick()" style="font-family: math;">Check Report</button></mat-card-title>
+                          <!-- <mat-card-title> <a>Check Report</a></mat-card-title> -->
+                        </mat-card-title-group>
+                  </mat-card-header>
+              <mat-card-content>
+              </mat-card-content>
+            </mat-card>
+      </section>
+   </div>
+
+
+   <ng-template #matProgressSpinner>
+    <mat-progress-spinner
+      class="example-margin"
+      [color]="'primary'"
+      [mode]="'indeterminate'"
+      *ngIf="isLoading"
+    >
+    
+    </mat-progress-spinner>
+    <div style="font-size: 20px;
+    font-family: math;
+    padding: 10px;
+    font-weight: bold;">
+        Generating test cases ...
+    </div>
+  </ng-template>
+
+  <ng-template #files>
+    <div mat-dialog-title>Generated Files
+        <button mat-button mat-dialog-close style="float: right;">Cancel</button>  
+    </div>
+    <mat-dialog-content>
+        <div *ngFor="let name of fileName">{{name}}</div>
+    </mat-dialog-content>
+  </ng-template>
+   
+
+    
+      
+
+
